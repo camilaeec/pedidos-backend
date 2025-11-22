@@ -20,6 +20,14 @@ custom:
   sqsDLQName: ${self:provider.environment.SQS_QUEUE}-dlq
 
 functions:
+  inicializarDatos:
+    handler: lambdas/inicializar_datos.lambda_handler
+    events:
+      - http:
+          path: /admin/init-data
+          method: post
+          cors: true
+          authorizer: autorizador
   # Función de Autorización
   autorizador:
     handler: lambdas/autorizador.lambda_handler
