@@ -7,7 +7,7 @@ provider:
   memorySize: 256
   timeout: 30
   iam:
-    role: arn:aws:iam::364506194159:role/LabRole
+    role: arn:aws:iam::955049055565:role/LabRole
   environment:
     STAGE: ${opt:stage, 'dev'}
     PEDIDOS_TABLE: ${self:service}-${self:provider.environment.STAGE}-pedidos
