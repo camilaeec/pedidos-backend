@@ -1,0 +1,82 @@
+[
+  {
+    "storeId": "KFC-001",
+    "name": "KFC Plaza San Miguel",
+    "address": "Av. La Marina 2000",
+    "district": "San Miguel",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-002",
+    "name": "KFC Miraflores Kennedy",
+    "address": "Av. Larco 500",
+    "district": "Miraflores",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-003",
+    "name": "KFC Aviación",
+    "address": "Av. Aviación 2798",
+    "district": "San Borja",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-004",
+    "name": "KFC Real Plaza Centro Cívico",
+    "address": "Av. Garcilaso de la Vega 1337",
+    "district": "Centro de Lima",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-005",
+    "name": "KFC Mall del Sur",
+    "address": "Av. Los Lirios 406",
+    "district": "San Juan de Miraflores",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-006",
+    "name": "KFC Jockey Plaza",
+    "address": "Av. Javier Prado 4200",
+    "district": "Surco",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-007",
+    "name": "KFC Plaza Norte",
+    "address": "Av. Tomás Valle 1531",
+    "district": "Independencia",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-008",
+    "name": "KFC Puruchuco",
+    "address": "Carretera Central S/N",
+    "district": "Ate",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-009",
+    "name": "KFC MegaPlaza",
+    "address": "Av. Alfredo Mendiola 3698",
+    "district": "Independencia",
+    "city": "LIMA",
+    "active": true
+  },
+  {
+    "storeId": "KFC-010",
+    "name": "KFC Arequipa Centro",
+    "address": "Calle Mercaderes 450",
+    "district": "Centro",
+    "city": "AREQUIPA",
+    "active": true
+  }
+]

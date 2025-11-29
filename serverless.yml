@@ -21,27 +21,26 @@ custom:
 
 functions:
   login:
-    handler: lambdas/auth.login
+    handler: lambdas.auth.login.lambda_handler
     events:
       - http:
           path: /auth/login
           method: post
           cors: true
-  
+
   register:
-    handler: lambdas/auth.register
+    handler: lambdas.auth.register.lambda_handler
     events:
       - http:
           path: /auth/register
           method: post
           cors: true
-  # Función de Autorización
-  autorizador:
-    handler: lambdas/autorizador.lambda_handler
 
-  # Gestión de Pedidos
+  autorizador:
+    handler: lambdas.autorizador.lambda_handler
+
   registro:
-    handler: lambdas/registro.lambda_handler
+    handler: lambdas.pedidos.registro.lambda_handler
     events:
       - http:
           path: /order
@@ -50,7 +49,7 @@ functions:
           authorizer: autorizador
 
   status:
-    handler: lambdas/status.lambda_handler
+    handler: lambdas.pedidos.status.lambda_handler
     events:
       - http:
           path: /status
@@ -59,11 +58,14 @@ functions:
           authorizer: autorizador
 
   procesamiento:
-    handler: lambdas/procesamiento.lambda_handler
+    handler: lambdas.procesamiento.procesamiento.lambda_handler
+    events:
+      - sqs:
+          arn:
+            'Fn::GetAtt': [ PedidosQueue, Arn ]
 
-  # Catálogos
   menu:
-    handler: lambdas/menu.lambda_handler
+    handler: lambdas.menu.menu.lambda_handler
     events:
       - http:
           path: /menu
@@ -72,17 +74,16 @@ functions:
           authorizer: autorizador
 
   locales:
-    handler: lambdas/locales.lambda_handler
+    handler: lambdas.inicializar_datos.lambda_handler
     events:
       - http:
-          path: /locales
-          method: get
+          path: /locales/init
+          method: post
           cors: true
           authorizer: autorizador
 
 resources:
   Resources:
-    # Tabla de Pedidos
     PedidosTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -90,7 +91,7 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
-          - AttributeName: store
+          - AttributeName: storeId
             AttributeType: S
         KeySchema:
           - AttributeName: id
@@ -99,12 +100,11 @@ resources:
         GlobalSecondaryIndexes:
           - IndexName: StoreIndex
             KeySchema:
-              - AttributeName: store
+              - AttributeName: storeId
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
 
-    # Tabla de Menú
     MenuTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -126,7 +126,6 @@ resources:
             Projection:
               ProjectionType: ALL
 
-    # Tabla de Locales
     LocalesTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -139,7 +138,6 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
 
-    # Colas SQS
     PedidosQueue:
       Type: AWS::SQS::Queue
       Properties:

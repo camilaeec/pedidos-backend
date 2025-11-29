@@ -2,8 +2,6 @@ import json
 
 def lambda_handler(event, context):
     print("Evento Autorizador:", json.dumps(event))
-    
-    # Autorización simple para desarrollo
     token = event.get('headers', {}).get('Authorization', '')
     
     if token and ('Bearer demo-token' in token or 'demo-token' in token):
@@ -23,6 +21,4 @@ def lambda_handler(event, context):
                 'user': 'demo-user'
             }
         }
-    
-    # Denegar por defecto
     raise Exception('Unauthorized')
